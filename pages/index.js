@@ -33,25 +33,16 @@ export default function Home() {
         <div className="welcomeArea"style={{gridArea:'welcomeArea'}}>
             <Box>
                 Bem vindo 
+                <OrkutNostalgicIconSet/>
             </Box>
         </div>
-        <div className="profileRelationsArea"style={{gridArea:'profileRelationsArearea'}}>
-            <ProfileRelationsBoxWrapper>
-                <h2 className="smallTitle">
-                Amigos
-                </h2>
-                
-            <ul>       
-                {pessoasFavoritas.map((itemAtual)=>{
-                    return(
-                        <a href={`/users/${itemAtual}`} key={itemAtual}>
-                        <img src={`https://github.com/${itemAtual}.png`}/>
-                        <span>{itemAtual}</span>  
-                        </a>   
-                    )
-                })}
-            </ul>  
-            </ProfileRelationsBoxWrapper>          
+        <div className="profileRelationsArea"style={{gridArea:'profileRelationsArea'}}>
+        <ProfileRelationsBoxWrapper>
+            <h2 className="smallTitle">Amigos</h2>   
+        </ProfileRelationsBoxWrapper>          
+            
+            
+            
             <Box>
                 Comunidades
             </Box>
