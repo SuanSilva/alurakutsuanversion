@@ -26,7 +26,12 @@ function ProfileSidebar(propriedades) {
 export default function Home() {
    
     const githubUser= 'SuanSilva';
-    const [comunidades,setComunidades]= React.useState(['alurakut']);
+    const [comunidades,setComunidades]= React.useState([{
+      id:'qualuqer coisa',
+      title: 'Eu odeio acordar cedo',
+      image: 'https://alurakut.vercel.app/capa-comunidade-01.jpg',
+      
+    }]);
     const pessoasFavoritas= [
         'juunegreiros',
         'omariosouto',
@@ -54,8 +59,18 @@ export default function Home() {
             <h2 className="subTitle">O que você deseja fazer?</h2>
             <form onSubmit={function handleCriaComunidade(e){
               e.preventDefault();
-              //comunidades.push('Alura Stars');
-              const comunidadeAtualizadas=[...comunidades,'Alura Stars'];
+              const dadosDoForm= new FormData(e.target);
+              console.log('Campo',dadosDoForm.get('title'));
+              console.log('Campo',dadosDoForm.get('image'));
+              
+              const comunidade = {
+                id:new Date().toISOString(),
+                title: dadosDoForm.get('title'),
+                image: dadosDoForm.get('image'),
+
+              };
+              
+              const comunidadeAtualizadas=[...comunidades, comunidade];
               setComunidades(comunidadeAtualizadas)
               console.log(comunidades)
                
@@ -91,7 +106,7 @@ export default function Home() {
             <ul>
               {pessoasFavoritas.map((itemAtual) => {
                 return (
-                  <li>
+                  <li key={itemAtual}>
                     <a href={`/users/${itemAtual}`} key={itemAtual}>
                       <img src={`https://github.com/${itemAtual}.png`} />
                       <span>{itemAtual}</span>
@@ -106,10 +121,10 @@ export default function Home() {
             <ul>
               {comunidades.map((itemAtual) => {
                 return (
-                  <li>
-                    <a href={`/users/${itemAtual}`} key={itemAtual}>
-                      <img src={`http://placehold.it/300x300`} />
-                      <span>{itemAtual}</span>
+                  <li key={itemAtual.id}>
+                    <a href={`/users/${itemAtual.title}`} key={itemAtual.title}>
+                      <img src={itemAtual.image} />
+                      <span>{itemAtual.title}</span>
                     </a>
                   </li>
                 )
